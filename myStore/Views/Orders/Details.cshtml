@@ -1,0 +1,158 @@
+﻿@model myStore.Models.Order
+
+@{
+    ViewData["Title"] = "Details";
+    var cartview = (List<CartView>)ViewData["cartview"];
+    var colors = (List<Color>)ViewData["colors"];
+    var sizes = (List<Size>)ViewData["sizes"];
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ShoppingCartId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ShoppingCartId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IsCleared)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IsCleared)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.OrderId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+<section class="mt-5">
+    <div class="cart d-flex flex-column">
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col" class="text-white">Product</th>
+                            <th scope="col" class="text-white">Price</th>
+                            <th scope="col" class="text-white">Color</th>
+                            <th scope="col" class="text-white">Size</th>
+                            <th scope="col" class="text-white">Quantity</th>
+                            <th scope="col" class="text-white">Total</th>
+                            <th scope="col" class="text-white"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="cart-items">
+                        @if (Model == null)
+                        {
+
+                            <tr>
+                                <td>
+                                    <div class="text-center">
+                                        <p class="text-danger" style="font-size:5vw;">No items in the cart !!!</p>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                        }
+                        else
+                        {
+                            @foreach (var item in cartview)
+                            {
+                    <tr>
+                        <td>
+                            <div class="main cart-item">
+                                <div class="img-wrap">
+                                    <img src="@Html.DisplayFor(modelItem => item.Product.ImagePath)" alt="">
+                                </div>
+                                <div class="productName">
+                                    <h6>@Html.DisplayFor(modelItem => item.Product.ProductName)</h6>
+                                </div>
+                                <div class="hiddenProductDetails">
+                                    <h6 hidden>@Html.DisplayFor(modelItem => item.Product.ProductId)</h6>
+                                    <h6 hidden>@Html.DisplayFor(modelItem => item.Product.BarCode)</h6>
+                                    <h6 hidden>@Html.DisplayFor(modelItem => item.Product.SerialNumber)</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="unitPrice">
+                                <h6>
+                                    R:<span class="cart-item-price">
+                                        @Html.DisplayFor(modelItem => item.Product.Price)
+                                    </span>
+                                </h6>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="color">
+                                <h6>
+                                    @foreach (var color in colors.Where(x => x.ColorId == item.CartItem.ColorId))
+
+                                    {
+                                       
+                                         <button class="btn rounded-circle text-white" style="background-color:@color.ColorCode"> @color.ColorName</button>
+                                    }
+
+
+
+                                </h6>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="size">
+                                <h6>
+                                    @foreach (var size in sizes.Where(x => x.SizeId == item.CartItem.SizeId))
+
+                                    {
+                                        @size.SizeNumber;
+                                    }
+
+                                </h6>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="counter">
+
+                                <form>
+
+                                    <h4 readonly>@Html.DisplayFor(modelItem => item.CartItem.Quantity)</h4>
+
+                                </form>
+
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <h6>R: <span class="TotalPrice">@Html.DisplayFor(modelItem => item.CartItem.TotalPrice) </span></h6>
+                            </div>
+                        </td>
+
+                    </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

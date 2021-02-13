@@ -1,0 +1,166 @@
+﻿@model ProductSpec
+
+
+<div class="container-fluid">
+
+    <div class="card-deck">
+        <div class="card">
+            <div class="card-header text-center">
+                <p class="card-text">Product Operations</p>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li class="">
+                        <a class="btn btn-outline-dark mb-3" asp-controller="Products" asp-action="ProductsPortal">
+                            <span>Products</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-outline-dark mb-3" asp-controller="Stocks" asp-action="Create">
+                            <span>Edit Product Stock</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-outline-dark mb-3" asp-controller="Stocks" asp-action="Create">
+                            <span>Products Specifications</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="btn btn-outline-dark mb-3" asp-controller="Stocks" asp-action="Create">
+                            <span>Product Tags</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="card bg-warning">
+            <div class="card-body text-center">
+                <p class="card-text">Customer Operations</p>
+            </div>
+
+        </div>
+        <div class="card bg-success">
+            <div class="card-body text-center">
+                <p class="card-text">Categories Operations</p>
+            </div>
+        </div>
+        <div class="card bg-danger">
+            <div class="card-body text-center">
+                <p class="card-text">roles Operations</p>
+            </div>
+        </div>
+        <div class="card bg-danger">
+            <div class="card-body text-center">
+                <p class="card-text">Brand Operations</p>
+            </div>
+        </div>
+        <div class="card bg-danger">
+            <div class="card-body text-center">
+                <p class="card-text">Brand Operations</p>
+            </div>
+        </div>
+    </div>
+
+    @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item p-xl-2">
+
+                    <a class="nav-link text-dark  d-flex flex-column text-center" asp-area="" asp-controller="Products" asp-action="Create">
+                        <i class="fas fa-edit fa-2x"></i>
+                        <span class="mt-1">Create Product</span>
+                    </a>
+
+                </li>
+                <li class="nav-item p-xl-2">
+
+                    <a class="nav-link text-dark  d-flex flex-column text-center" asp-area="" asp-controller="Stocks" asp-action="Create">
+                        <i class="fas fa-edit fa-2x"></i>
+                        <span class="mt-1">Add Product Stock</span>
+                    </a>
+
+                </li>
+                <li class="nav-item p-xl-2">
+
+                    <a class="nav-link text-dark  d-flex flex-column text-center" asp-area="" asp-controller="Stocks" asp-action="Index">
+                        <i class="fas fa-edit fa-2x"></i>
+                        <span class="mt-1">Stock</span>
+                    </a>
+
+                </li>
+                <li class="nav-item p-xl-2">
+
+                    <a class="nav-link text-dark d-flex flex-column text-center" asp-area="" asp-controller="Categories" asp-action="Index">
+                        <i class="fas fa-edit fa-2x"></i>
+                        <span class="mt-1">Categories</span>
+                    </a>
+
+                </li>
+                <li class="nav-item p-xl-2">
+
+                    <a class="nav-link text-dark d-flex flex-column text-center" asp-area="" asp-controller="ProductSpecs" asp-action="Index">
+                        <i class="fas fa-edit fa-2x"></i>
+                        <span class="mt-1">ProductSpec</span>
+                    </a>
+
+                </li>
+                <li class="nav-item p-xl-2">
+
+                    <a class="nav-link text-dark  d-flex flex-column text-center" asp-area="" asp-controller="Colors" asp-action="Index">
+                        <i class="fas fa-edit fa-2x"></i>
+                        <span class="mt-1">Colors</span>
+                    </a>
+
+                </li>
+                <li class="nav-item p-xl-2">
+
+                    <a class="nav-link text-dark  d-flex flex-column text-center" asp-area="" asp-controller="Sizes" asp-action="Index">
+                        <i class="fas fa-edit fa-2x"></i>
+                        <span class="mt-1">Sizes</span>
+                    </a>
+
+                </li>
+                <li class="nav-item p-xl-2">
+
+                    <a class="nav-link text-dark  d-flex flex-column text-center" asp-area="" asp-controller="Tags" asp-action="Index">
+                        <i class="fas fa-edit fa-2x"></i>
+                        <span class="mt-1">Tags</span>
+                    </a>
+
+                </li>
+
+                <li class="nav-item p-xl-2">
+
+                    <a class="nav-link text-dark  d-flex flex-column text-center" asp-area="" asp-controller="Customers" asp-action="Index">
+                        <i class="fas fa-edit fa-2x"></i>
+                        <span class="mt-1">Customer</span>
+                    </a>
+
+                </li>
+                <li class="nav-item p-xl-2">
+
+                    <a class="nav-link text-dark  d-flex flex-column text-center" asp-area="" asp-controller="RolesAdmin" asp-action="Index">
+                        <i class="fas fa-edit fa-2x"></i>
+                        <span class="mt-1">Roles</span>
+                    </a>
+
+                </li>
+                <li class="nav-item p-xl-2">
+
+                    <a class="nav-link text-dark  d-flex flex-column text-center" asp-area="" asp-controller="Addresses" asp-action="Index">
+                        <i class="fas fa-edit fa-2x"></i>
+                        <span class="mt-1">Roles</span>
+                    </a>
+
+                </li>
+            </ul>
+
+
+        </div>
+
+    </nav>*@
+</div>

@@ -1,0 +1,108 @@
+﻿@model ProductSpec
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="container mt-5 mb-5">
+        <div class="col-lg-12">
+            <h1 class="text-center text-uppercase font-weight-bold">Products</h1>
+            <div  class="mt-5 mb-5 row d-flex justify-content-between">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        Categories
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach (Category C in Model.Categories)
+                        {
+                            <li><a class="btn btn-dark m-2" asp-controller="Products" asp-action="FilterCategory" asp-route-id="@C.CategoryId">@C.CategoryName</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        Brands
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach (Brand b in Model.Brands)
+                        {
+                            <li><a class="btn btn-dark m-2" asp-controller="Products" asp-action="FilterCategory" asp-route-id="@b.BrandId">@b.BrandName</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        Tags
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach (Tag t in Model.Tags)
+                        {
+                            <li><a class="btn btn-dark m-2" asp-controller="Products" asp-action="FilterCategory" asp-route-id="@t.TagId">@t.TagName</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row  d-flex justify-content-between">
+                <!--Single Item-->
+                @foreach (var item in Model.Products)
+                {
+                    <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
+
+                        <div class="card single-item" id="">
+                            <!--Card Image-->
+                            <div class="img-container">
+                                <a asp-action="Details" asp-route-id="@item.ProductId">
+                                    <img src="@Html.DisplayFor(modelItem => item.ImagePath)"
+                                         class="card-img-top product-img" alt="">
+                                </a>
+                            </div>
+                            <!--End of Card Image-->
+                            <!--Card Details-->
+                            <div class="card-body">
+                                <div class="card-text d-flex justify-content-between text-captialize">
+                                    <h5 id="item-name"> @Html.DisplayFor(modelItem => item.ProductName)</h5>
+                                    <span>
+                                        <i class="zar-icon font-weight-bold">R</i>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </span>
+                                </div>
+                                <!--Hidden Card Details-->
+                                <div>
+                                    <h5 class="SerialNumber" hidden>@Html.DisplayFor(modelItem => item.SerialNumber)</h5>
+                                    <h5 class="barcode" hidden>@Html.DisplayFor(modelItem => item.BarCode)</h5>
+                                </div>
+                                <!--End Of Hidden Card Details-->
+                                <!--Card Buttons and Links-->
+                                <div class="card-btns d-flex justify-content-end">
+                                    <a  asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-success px-3 mx-1">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+
+                                    <a href="#" class="btn btn-danger px-3 mx-1">
+                                        <i class="fa fa-heart"></i>
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.ProductId"
+                                       class="btn btn-warning px-3 mx-1"><i class="fa fa-eye"></i></a>
+                                </div>
+                                <!--End of Buttons and Links-->
+                            </div>
+                            <!--End of Card Details-->
+                        </div>
+
+                    </div>
+                    <!--End of Single Item-->
+                }
+
+            </div>
+        </div>
+    </div>
+
+    @*<a asp-action="Create" class="btn btn-primary mb-2"><i class="fa fa-plus">Create New Product</i></a>
+        <a asp-action="ViewProductTable" class="btn btn-success mb-2"><i class="fa fa-table">View products table</i></a>*@

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<myStore.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+
+
+
+<div class="container mt-100">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-sm-6">
+                <div class="card mb-30">
+                    <a class="card-img-tiles" href="#" data-abc="true">
+                        <div class="inner">
+                            <div class="main-img"><img src="/css/images/air-force-1-gtx-shoe-fmT0NJ.jpg" alt="Category"></div>
+                            <div class="thumblist"><img src="/css/images/air-max-90-shoe-FwDx03.jpg" alt="Category"><img src="/css/images/air-max-90-shoe-Xk8l6F.jpg" alt="Category"></div>
+                        </div>
+                    </a>
+                    <div class="card-body text-center">
+                        <h4 class="card-title"> @Html.DisplayFor(modelItem => item.CategoryName)</h4>
+                      <a class="btn btn-outline-primary btn-sm"   asp-area="" asp-controller="Categories"  asp-action="ViewProducts" asp-route-id="@item.CategoryId" data-abc="true">View Products</a>
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model myStore.Models.Order
+
+
+
+   
+
+
+
+
+<h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="display:none">
+                <label asp-for="OrderNumber" class="control-label"></label>
+                <input asp-for="OrderNumber" class="form-control" value="@Model.OrderNumber" />
+                <span asp-validation-for="OrderNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display:none">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <input asp-for="CustomerId" class="form-control" value="@Model.CustomerId" />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display:none">
+                <label asp-for="ShoppingCartId" class="control-label"></label>
+                <input asp-for="ShoppingCartId" class="form-control" value="@Model.ShoppingCartId" />
+                <span asp-validation-for="ShoppingCartId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check" style="display:none">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsCleared" value="@Model.IsCleared" /> @Html.DisplayNameFor(model => model.IsCleared)
+                </label>
+            </div>
+          
+            <div class="form-group">
+                <h3>Complete Order !</h3>
+
+                <input type="submit" value="Yes" placeholder="Yes" class="btn btn-primary" />
+                <a  asp-controller="Orders" asp-action="GetCustomerOrders" asp-route-id="@Model.CustomerId">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<myStore.Models.Brand>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandLogoPath)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrandLogoPath)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.BrandId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.BrandId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BrandId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>*@
+
+    <div class="box">
+        <div class="container">
+            <div class="row">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="box-part text-center">
+                            <img class="brandimg" src="@item.BrandLogoPath" alt="">
+                            <div class="title">
+                                <h3>@Html.DisplayFor(modelItem => item.BrandName)</h3>
+                            </div>
+                            <div>
+                                <a class="btn btn-outline-primary btn-sm" asp-area="" asp-controller="Brands" asp-action="ViewProducts" asp-route-id="@item.BrandId" data-abc="true">View Products</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>    
+        </div>
+    </div>

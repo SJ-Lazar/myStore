@@ -1,0 +1,137 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - myStore</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow bg-dark  mb-3">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="/css/images/logo/main/logo.png" alt="Alternate Text" style="height:50px;width:80px"/></a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item p-xl-2">
+
+                            <a class="nav-link text-white  d-flex flex-column text-center" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="fa fa-home fa-2x"></i>
+                                <span class="mt-1">Home</span>
+                            </a>
+
+                        </li>
+                        <li class="nav-item p-xl-2">
+
+                            <a class="nav-link text-white d-flex flex-column text-center" asp-area="" asp-controller="Products" asp-action="Index">
+                                <i class="fa fa-list-alt fa-2x"></i>
+                                <span class="mt-1">Products</span>
+                            </a>
+
+                        </li>
+                        @*<li class="nav-item p-xl-2">
+
+                <a class="nav-link text-dark  d-flex flex-column text-center" asp-area="" asp-controller="Home" asp-action="Privacy">
+                    <i class="fa fa-lock fa-2x"></i>
+                    <span class="mt-1">Privacy</span>
+                </a>
+
+            </li>*@
+                        <li class="nav-item p-xl-2">
+
+                            <a class="nav-link text-white d-flex flex-column text-center" asp-area="" asp-controller="Categories" asp-action="Index">
+                                <i class="fas fa-columns fa-2x"></i>
+                                <span class="mt-1">Categories</span>
+                            </a>
+
+                        </li>
+                        <li class="nav-item p-xl-2">
+
+                            <a class="nav-link text-white  d-flex flex-column text-center" asp-area="" asp-controller="Brands" asp-action="Index">
+                                <i class="fab fa-app-store fa-2x"></i>
+                                <span class="mt-1">Brands</span>
+                            </a>
+
+                        </li>
+                    </ul>
+
+
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <a class="nav-link text-white  d-flex flex-column text-center" asp-area="" asp-controller="Admin" asp-action="Index">
+                                <i class="fas fa-edit fa-2x"></i>
+                                <span class="mt-1">Admin</span>
+                            </a>
+                        }
+                    }
+
+
+                    <a class="nav-link text-white" asp-area="" asp-controller="ShoppingCarts" asp-action="ViewCart"><i class="fa fa-shopping-cart fa-2x"></i>@HttpContextAccessor.HttpContext.Session.GetInt32("count")</a>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted bg-dark">
+        <div class="text-center py-5">
+            <h2 class="py-3">
+                Shopping Time
+            </h2>
+            <div class="mx-auto heading-line">
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="container">
+                <div class="row mb-3">
+                    <div class="col-lg-8 offset-lg-2 text-center">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Saepe tenetur quidem eaque repudiandae,
+                            ut repellendus. Laboriosam, velit nihil. Temporibus, repellendus.
+                        </p>
+                        <div class="justify-content-center">
+                            <i class="fab fa-facebook fa-2x"></i>
+                            <i class="fab fa-twitter fa-2x"></i>
+                            <i class="fab fa-instagram fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright text-center py-3 border-top text-light">
+                    <p>&copy; Copy Right Shopping Time</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+</body>
+</html>

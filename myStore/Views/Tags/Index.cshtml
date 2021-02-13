@@ -1,0 +1,58 @@
+﻿@model IEnumerable<myStore.Models.Tag>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TagName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TagName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TagId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TagId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TagId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div class="container mt-100">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-sm-6">
+                <div class="card mb-30">
+                    <a class="card-img-tiles" href="#" data-abc="true">
+                        <div class="inner">
+                            <div class="main-img"><img src="/css/images/air-force-1-gtx-shoe-fmT0NJ.jpg" alt="Category"></div>
+                            <div class="thumblist"><img src="/css/images/air-max-90-shoe-FwDx03.jpg" alt="Category"><img src="/css/images/air-max-90-shoe-Xk8l6F.jpg" alt="Category"></div>
+                        </div>
+                    </a>
+                    <div class="card-body text-center">
+                        <h4 class="card-title"> @Html.DisplayFor(modelItem => item.TagName)</h4>
+
+                        <p class="text-muted">Starting from $499</p><a class="btn btn-outline-primary btn-sm" asp-area="" asp-controller="Tags" asp-action="ViewProducts" asp-route-id="@item.TagId" data-abc="true">View Products</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

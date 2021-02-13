@@ -1,0 +1,124 @@
+﻿@model ProductSpec
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container-fluid mt-5 mb-5">
+    <div class="row g-2">
+        <div class="col-md-3">
+            <div class="d-flex justify-content-center">
+                <div class="wrapper center-block">
+
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading1">
+                                <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapse1"> Categories </a> </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                                <div class="panel-body">
+                                    @foreach (Category C in Model.Categories)
+                                    {
+                                        <a class="btn btn-dark m-2" asp-controller="Products" asp-action="FilterCategory" asp-route-id="@C.CategoryId">@C.CategoryName</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading2">
+                                <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2"> Tags </a> </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                                <div class="panel-body">
+                                    @foreach (Tag t in Model.Tags)
+                                    {
+                                        <a class="btn btn-dark m-2" asp-controller="Products" asp-action="FilterTag" asp-route-id="@t.TagId">@t.TagName</a>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading3">
+                                <h4 class="panel-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3"> Brands </a> </h4>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+                                <div class="panel-body">
+                                    @foreach (Brand b in Model.Brands)
+                                    {
+                                        <a class="btn btn-dark m-2" asp-controller="Products" asp-action="FilterBrand" asp-route-id="@b.BrandId">@b.BrandName</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+
+            <h1>Products</h1>
+
+            <div class="row  d-flex justify-content-between">
+                <!--Single Item-->
+                @foreach (var item in Model.Products)
+                {
+                    <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
+
+                        <div class="card single-item" id="">
+                            <!--Card Image-->
+                            <div class="img-container">
+                                <a asp-action="Details" asp-route-id="@item.ProductId">
+                                    <img src="@Html.DisplayFor(modelItem => item.ImagePath)"
+                                         class="card-img-top product-img" alt="">
+                                </a>
+                            </div>
+                            <!--End of Card Image-->
+                            <!--Card Details-->
+                            <div class="card-body">
+                                <div class="card-text d-flex justify-content-between text-captialize">
+                                    <h5 id="item-name"> @Html.DisplayFor(modelItem => item.ProductName)</h5>
+                                    <span>
+                                        <i class="zar-icon font-weight-bold">R</i>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </span>
+                                </div>
+                                <!--Hidden Card Details-->
+                                <div>
+                                    <h5 class="SerialNumber" hidden>@Html.DisplayFor(modelItem => item.SerialNumber)</h5>
+                                    <h5 class="barcode" hidden>@Html.DisplayFor(modelItem => item.BarCode)</h5>
+                                </div>
+                                <!--End Of Hidden Card Details-->
+                                <!--Card Buttons and Links-->
+                                <div class="card-btns d-flex justify-content-end">
+                                    <a asp-controller="ShoppingCarts" asp-action="AddToCart" asp-route-id="@item.ProductId" class="btn btn-success px-3 mx-1">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+
+                                    <a href="#" class="btn btn-danger px-3 mx-1">
+                                        <i class="fa fa-heart"></i>
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.ProductId"
+                                       class="btn btn-warning px-3 mx-1"><i class="fa fa-eye"></i></a>
+                                </div>
+                                <!--End of Buttons and Links-->
+                            </div>
+                            <!--End of Card Details-->
+                        </div>
+
+                    </div>
+                    <!--End of Single Item-->
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<a asp-action="Create" class="btn btn-primary mb-2"><i class="fa fa-plus">Create New Product</i></a>
+    <a asp-action="ViewProductTable" class="btn btn-success mb-2"><i class="fa fa-table">View products table</i></a>*@
+
